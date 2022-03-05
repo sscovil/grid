@@ -61,127 +61,127 @@ row, and `3` for the fourth row.
 
 |   | `0` | `1` | `2` |
 |---|---|---|---|
-| `0` | A | B | C |
-| `1` | D | E | F |
-| `2` | G | H | I |
-| `3` | J | K | L |
+| **`0`** | A | B | C |
+| **`1`** | D | E | F |
+| **`2`** | G | H | I |
+| **`3`** | J | K | L |
 
-To get grid coordinates of `E`:
+To get grid coordinates of `H`:
 
 ```typescript
-const xy = grid.coordsOf('E')
+const xy = grid.coordsOf('H')
 
-expect(xy).toEqual({ x: 1, y: 1 })
+expect(xy).toEqual({ x: 1, y: 2 })
 ```
 
-To get the array index of `E`:
+To get the array index of `H`:
 
 ```typescript
-const index = grid.indexOf('E')
+const index = grid.indexOf('H')
 
-expect(index).toEqual(4)
+expect(index).toEqual(7)
 ```
 
-To get `E` using its grid coordinates:
+To get `H` using its grid coordinates:
 
 ```typescript
-const valueAtCoords = grid.get({ x: 1, y: 1 })
+const valueAtCoords = grid.get({ x: 1, y: 2 })
 
-expect(valueAtCoords).toBe('E')
+expect(valueAtCoords).toBe('H')
 ```
 
-To get `E` using its array index:
+To get `H` using its array index:
 
 ```typescript
-const valueAtIndex = grid.get(4)
+const valueAtIndex = grid.get(7)
 
-expect(valueAtIndex).toBe('E')
+expect(valueAtIndex).toBe('H')
 ```
 
-To change the value of `E` using its grid coordinates:
+To change the value of `H` using its grid coordinates:
 
 ```typescript
-grid.set({ x: 1, y: 1 }, 'e')
+grid.set({ x: 1, y: 2 }, 'FOO')
 
-expect(grid.get(4)).toBe('e')
-expect(grid.get({ x: 1, y: 1 })).toBe('e')
+expect(grid.get(7)).toBe('FOO')
+expect(grid.get({ x: 1, y: 2 })).toBe('FOO')
 ```
 
-To change the value of `E` using its array index:
+To change the value of `H` using its array index:
 
 ```typescript
-grid.set(4, 'e')
+grid.set(7, 'BAR')
 
-expect(grid.get(4)).toBe('e')
-expect(grid.get({ x: 1, y: 1 })).toBe('e')
+expect(grid.get(7)).toBe('BAR')
+expect(grid.get({ x: 1, y: 2 })).toBe('BAR')
 ```
 
-To get all the values adjacent to `E` by its coordinate:
+To get all the values adjacent to `H` by its coordinate:
 
 ```typescript
-const adjacentByCoords = grid.getAdjacent({ x: 1, y: 1 })
+const adjacentByCoords = grid.getAdjacent({ x: 1, y: 2 })
 
-expect(adjacentByCoords).toEqual(['A', 'B', 'C', 'D', 'F', 'G', 'H', 'I'])
+expect(adjacentByCoords).toEqual(['D', 'E', 'F', 'G', 'I', 'J', 'K', 'L'])
 ```
 
-To get all the items adjacent to `E` by its array index:
+To get all the items adjacent to `H` by its array index:
 
 ```typescript
-const adjacentByIndex = grid.getAdjacent(4)
+const adjacentByIndex = grid.getAdjacent(7)
 
-expect(adjacentByIndex).toEqual(['A', 'B', 'C', 'D', 'F', 'G', 'H', 'I'])
+expect(adjacentByIndex).toEqual(['D', 'E', 'F', 'G', 'I', 'J', 'K', 'L'])
 ```
 
-To get all adjacent coordinates of `E` by its grid coordinate:
+To get all adjacent coordinates of `H` by its grid coordinate:
 
 ```typescript
-const adjacentCoords = grid.getAdjacentCoords({ x: 1, y: 1 })
+const adjacentCoords = grid.getAdjacentCoords({ x: 1, y: 2 })
 
 expect(adjacentCoords).toEqual([
-  { x: 0, y: 0 },
-  { x: 1, y: 0 },
-  { x: 2, y: 0 },
   { x: 0, y: 1 },
+  { x: 1, y: 1 },
   { x: 2, y: 1 },
   { x: 0, y: 2 },
-  { x: 1, y: 2 },
   { x: 2, y: 2 },
+  { x: 0, y: 3 },
+  { x: 1, y: 3 },
+  { x: 2, y: 3 },
 ])
 ```
 
-To get all adjacent indices of `E` by its array index:
+To get all adjacent indices of `H` by its array index:
 
 ```typescript
-const adjacentIndices = grid.getAdjacentIndices(4)
+const adjacentIndices = grid.getAdjacentIndices(7)
 
-expect(adjacentIndices).toEqual([0, 1, 2, 3, 5, 6, 7, 8])
+expect(adjacentIndices).toEqual([3, 4, 5, 6, 8, 9, 10, 11])
 ```
 
-To get the coordinate of `E` by its array index:
+To get the coordinate of `H` by its array index:
 
 ```typescript
-const xy = grid.getCoords(4)
-const invalidXY = grid.getCoords(40)
+const xy = grid.getCoords(7)
+const invalidXY = grid.getCoords(70) // assuming grid is not this big
 
-expect(xy).toEqual({ x: 1, y: 1 })
+expect(xy).toEqual({ x: 1, y: 2 })
 expect(invalidXY).toEqual({ x: -1, y: -1 })
 ```
 
-To get the index of `E` by its grid coordinate:
+To get the index of `H` by its grid coordinate:
 
 ```typescript
-const index = grid.getIndex({ x: 1, y: 1 })
-const invalidIndex = grid.getIndex({ x: 10, y: 10 })
+const index = grid.getIndex({ x: 1, y: 2 })
+const invalidIndex = grid.getIndex({ x: 10, y: 20 }) // assuming grid is not this big
 
-expect(index).toBe(4)
+expect(index).toBe(7)
 expect(invalidIndex).toBe(-1)
 ```
 
 To check if a coordinate is within the range of the grid:
 
 ```typescript
-const validXY = grid.isValidCoords({ x: 1, y: 1 })
-const invalidXY = grid.isValidCoords({ x: 10, y: 10 })
+const validXY = grid.isValidCoords({ x: 1, y: 2 })
+const invalidXY = grid.isValidCoords({ x: 10, y: 20 }) // assuming grid is not this big
 
 expect(validXY).toBe(true)
 expect(invalidXY).toBe(false)
@@ -190,8 +190,8 @@ expect(invalidXY).toBe(false)
 To check if an array index is within the range of the grid:
 
 ```typescript
-const validIndex = grid.isValidIndex(4)
-const invalidIndex = grid.isValidIndex(40)
+const validIndex = grid.isValidIndex(7)
+const invalidIndex = grid.isValidIndex(70) // assuming grid is not this big
 
 expect(validIndex).toBe(true)
 expect(invalidIndex).toBe(false)
@@ -311,9 +311,15 @@ interface GridCoords {
 
 ## Running Tests
 
+### Yarn
+
 ```shell
 yarn test
-# OR
+```
+
+### NPM
+
+```shell
 npm test
 ```
 
