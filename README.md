@@ -1,8 +1,8 @@
 # Grid
 
 The `Grid` object provides a 2D interface for a flat array, so elements can be accessed using `x` and `y` coordinates.
-Helper functions have been provided to convert an array index to [GridCoords](#GridCoords) and vice versa; and items can
-be retrieved or added to the array using either of the two.
+Helper functions have been provided to convert an array index to [GridCoords][2] and vice versa; and items can be
+retrieved or added to the array using either of the two.
 
 Additionally, `Grid` provides methods for retrieving all coordinates, indices, or items adjacent to a given index or
 coordinate, based on the number of `rows` and `cols` it was initialized with.
@@ -219,11 +219,11 @@ argument. If provided, the array elements will be used to populate the `items` a
 
 `Grid.isGridCoords()`
 
-Returns `true` if the argument implements the [GridCoords](#GridCoords) interface, or `false` otherwise.
+Returns `true` if the argument implements the [GridCoords][2] interface, or `false` otherwise.
 
 `Grid.isEqualCoords()`
 
-Returns `true` if both arguments implement the [GridCoords](#GridCoords) interface and have equal `x` and `y` values.
+Returns `true` if both arguments implement the [GridCoords][2] interface and have equal `x` and `y` values.
 
 ### Instance Properties
 
@@ -284,8 +284,8 @@ Returns the array index of the item provided as an argument if present in the gr
 
 `Grid.prototype.isValidCoords()`
 
-Returns `true` if the argument implements the [GridCoords](#GridCoords) interface and is within the range of the grid
-`items` array, or `false` otherwise.
+Returns `true` if the argument implements the [GridCoords][2] interface and is within the range of the grid `items`
+array, or `false` otherwise.
 
 `Grid.prototype.isValidIndex()`
 
@@ -324,3 +324,4 @@ npm test
 ```
 
 [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf
+[2]: #Interfaces
